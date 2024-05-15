@@ -1,0 +1,36 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.container {
+    text-align: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#imageContainer {
+    margin-bottom: auto;
+    padding-top: 20px;
+}
+
+.buttonContainer {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 0 10px;  
+    font-size: 16px;
+}
