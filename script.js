@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const button1 = document.getElementById('button1');
     const button2 = document.getElementById('button2');
     const imageContainer = document.getElementById('imageContainer');
-    const images = ['image1.jpg', 'image2.jpg'];
+    const images = ['Images/image1.jpg', 'Images/image2.jpg'];
     function getRandomImage() {
         const randomIndex = Math.floor(Math.random() * images.length);
         return images[randomIndex];
