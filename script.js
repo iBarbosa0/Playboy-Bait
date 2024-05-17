@@ -43,7 +43,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 showFullScreenImage(displayedImages[0].src);
                 document.querySelector(".button-container").style.display = "none";
 
-                // Hide full screen image and show buttons after 30 seconds
                 setTimeout(() => {
                     hideFullScreenImage();
                     document.querySelector(".button-container").style.display = "flex";
