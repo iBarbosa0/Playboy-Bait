@@ -7,46 +7,77 @@ document.addEventListener('DOMContentLoaded', function() {
     const buttonContainer = document.querySelector(".button-container");
 
     const images = ['Images/image1.jpg', 'Images/image2.jpg'];
+    const songs = [
+        'Musics/song1.mp3',
+        'Musics/song2.mp3',
+        'Musics/song3.mp3',
+        'Musics/song4.mp3'
+    ];
+    let audio = null;
+
 
     function getRandomImage() {
         const randomIndex = Math.floor(Math.random() * images.length);
         return images[randomIndex];
     }
 
+    function getRandomSong() {
+        const randomIndex = Math.floor(Math.random() * songs.length);
+        return songs[randomIndex];
+    }
+
     function showFullScreenImage(src) {
-        fullscreenImage.src = src;
-        fullscreenContainer.style.display = "flex";
+        // fullscreenImage.src = src;
+        // fullscreenContainer.style.display = "flex";
         console.log('Showing full screen image:', src)
+
+        const song = getRandomSong();
+        console.log('Selected song:', song);
+        audio = new Audio(song);
+        audio.play().then(() => {
+            console.log('Music started playing');
+        }).catch(error => {
+            console.error('Error playing music:', error);
+        });
     }
     
     function hideFullScreenImage() {
-        fullscreenContainer.style.display = "none";
-        console.log('Hiding full screen image');
+        //fullscreenContainer.style.display = "none";
+        //console.log('Hiding full screen image');
+
+        if (audio) {
+            audio.pause();
+            audio.currentTime = 0;
+            console.log('Stopping music');
+        }
     }
 
     function handleClick() {
-        imageContainer.innerHTML = '';
         if (Math.random() < 0.5) {
             const img = document.createElement('img');
             img.src = getRandomImage();
             img.alt = 'Random Image';
-            img.style.width = '575px';
-            img.style.height = 'auto';
+            img.classList.add('img_p');
             document.body.appendChild(img);
     
             const button1DisplayStyle = button1.style.display;
             const button2DisplayStyle = button2.style.display;
             button1.style.display = 'none';
             button2.style.display = 'none';
-    
+
             setTimeout(() => {
-                img.remove();
-                button1.style.display = button1DisplayStyle;
-                button2.style.display = button2DisplayStyle;
-            }, 5000);
+                showFullScreenImage(img.src);
+
+                setTimeout(() => {
+                    hideFullScreenImage();
+                    img.remove();
+                    button1.style.display = button1DisplayStyle;
+                    button2.style.display = button2DisplayStyle;
+                }, 10000);
+            }, 0);
         }
     }
-    
+
 
     button1.addEventListener('click', handleClick);
     button2.addEventListener('click', handleClick);

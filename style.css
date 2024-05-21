@@ -43,3 +43,8 @@ button {
 .button-container {
     display: flex;
 }
+
+.img_p {
+    height: auto;
+    width: 575px;
+}
