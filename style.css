@@ -39,3 +39,7 @@ button {
     max-width: 90%;
     max-height: 90%;
 }
+
+.button-container {
+    display: flex;
+}
