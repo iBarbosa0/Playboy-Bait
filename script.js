@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const title = document.getElementById('title');
     const button1 = document.getElementById('button1');
     const button2 = document.getElementById('button2');
     const imageContainer = document.getElementById('imageContainer');
@@ -64,15 +65,17 @@ document.addEventListener('DOMContentLoaded', function() {
             const button2DisplayStyle = button2.style.display;
             button1.style.display = 'none';
             button2.style.display = 'none';
-
+            
             setTimeout(() => {
                 showFullScreenImage(img.src);
+                title.style.display = 'none';
 
                 setTimeout(() => {
                     hideFullScreenImage();
                     img.remove();
                     button1.style.display = button1DisplayStyle;
                     button2.style.display = button2DisplayStyle;
+                    title.style.display = 'block';
                 }, 10000);
             }, 0);
         }
@@ -81,4 +84,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     button1.addEventListener('click', handleClick);
     button2.addEventListener('click', handleClick);
+
+    title.style.display = 'block';
 });
