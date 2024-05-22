@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
         'Musics/song3.mp3',
         'Musics/song4.mp3'
     ];
-    let audio = null;
+    let audioContext, gainNode, audioElement, track;
 
 
     function getRandomImage() {
