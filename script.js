@@ -34,8 +34,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const song = getRandomSong();
         console.log('Selected song:', song);
-        audio = new Audio(song);
-        audio.play().then(() => {
+        audioElement = new Audio(song);
+        audioElement.crossOrigin = "anonymous";
+                
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        track = audioContext.createMediaElementSource(audioElement);
+        gainNode = audioContext.createGain();
+        gainNode.gain.value = 10;
+                
+        track.connect(gainNode).connect(audioContext.destination);
+
+        audioElement.play().then(() => {
             console.log('Music started playing');
         }).catch(error => {
             console.error('Error playing music:', error);
@@ -46,10 +55,14 @@ document.addEventListener('DOMContentLoaded', function() {
         //fullscreenContainer.style.display = "none";
         //console.log('Hiding full screen image');
 
-        if (audio) {
-            audio.pause();
-            audio.currentTime = 0;
+        if (audioElement) {
+            audioElement.pause();
+            audioElement.currentTime = 0;
             console.log('Stopping music');
+
+            track.disconnect();
+            gainNode.disconnect();
+            audioContext.close();
         }
     }
 
