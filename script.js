@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const fullscreenImage = document.getElementById('fullscreen-image');
     const buttonContainer = document.querySelector(".button-container");
     const additionalButtonsContainer = document.getElementById('additional-buttons-container');
+    const extraButton1 = document.getElementById('extraButton1');
+    const extraButton2 = document.getElementById('extraButton2');
+    const extraButton3 = document.getElementById('extraButton3');
 
     const images = ['Images/image1.jpg', 'Images/image2.jpg'];
     const songs = [
@@ -99,9 +102,44 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    function handleExtraButtonClick() {
+        if (Math.random() < 0.5) {
+            const img = document.createElement('img');
+            img.src = getRandomImage();
+            img.alt = 'Random Image';
+            img.classList.add('img_p');
+            document.body.appendChild(img);
+
+            const extraButton1DisplayStyle = button1.style.display;
+            const extraButton2DisplayStyle = button2.style.display;
+            const extraButton3DisplayStyle = button1.style.display;
+            extraButton1.style.display = 'none';
+            extraButton2.style.display = 'none';
+            extraButton3.style.display = 'none';
+
+            setTimeout(() => {
+                showFullScreenImage(img.src);
+                title.style.display = 'none';
+
+                setTimeout(() => {
+                    hideFullScreenImage();
+                    img.remove();
+                    extraButton1.style.display = extraButton1DisplayStyle;
+                    extraButton2.style.display = extraButton2DisplayStyle;
+                    extraButton3.style.display = extraButton3DisplayStyle;
+                    title.style.display = 'block';
+                }, 10000);
+            }, 0);
+        }
+    }
+
 
     button1.addEventListener('click', handleClick);
     button2.addEventListener('click', handleClick);
+
+    extraButton1.addEventListener('click', handleExtraButtonClick);
+    extraButton2.addEventListener('click', handleExtraButtonClick);
+    extraButton3.addEventListener('click', handleExtraButtonClick);
 
     title.style.display = 'block';
 });
