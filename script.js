@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const fullscreenContainer = document.getElementById('fullscreen-image-container');
     const fullscreenImage = document.getElementById('fullscreen-image');
     const buttonContainer = document.querySelector(".button-container");
+    const additionalButtonsContainer = document.getElementById('additional-buttons-container');
 
     const images = ['Images/image1.jpg', 'Images/image2.jpg'];
     const songs = [
@@ -91,6 +92,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     title.style.display = 'block';
                 }, 10000);
             }, 0);
+        } else {
+            button1.style.display = 'none';
+            button2.style.display = 'none';
+            additionalButtonsContainer.style.display = 'flex';
         }
     }
 
